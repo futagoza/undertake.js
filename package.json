@@ -1,0 +1,60 @@
+{
+    "name": "undertake",
+    "version": "0.0.0",
+    "description": "undertake.js - just another promise library",
+    "keywords": [
+        "es2017",
+        "async",
+        "await",
+        "promise",
+        "defer",
+        "undertake"
+    ],
+    "repository": "futagoza/undertake.js",
+    "bugs": "https://github.com/futagoza/undertake.js/issues",
+    "license": "MIT",
+    "author": "Futago-za Ryuu",
+    "files": [
+        "bin",
+        "dist",
+        "lib",
+        "index.d.ts"
+    ],
+    "main": "lib/undertake.js",
+    "bin": "bin/undertake.js",
+    "module": "dist/undertake.esm.js",
+    "browser": "dist/undertake.es5.js",
+    "typings": "index.d.ts",
+    "scripts": {
+        "build": "npm run build:undertake && npm run build:benchmark && npm run build:browser && npm run build:module",
+        "build:undertake": "babel src/undertake.js -d lib --ignore spec.js,test.js",
+        "build:benchmark": "babel src/benchmark -d benchmark --ignore spec.js,test.js",
+        "build:browser": "ROLLUP_TARGET=browser rollup -c",
+        "build:module": "ROLLUP_TARGET=module rollup -c",
+        "preversion": "npm install && jest",
+        "postversion": "git push --follow-tags && npm publish",
+        "lint": "eslint --cache bin src rollup.config.js",
+        "benchmark": "benchr benchmark/**/*.js",
+        "test": "jest",
+        "ci": "npm run lint -- --quiet && jest"
+    },
+    "devDependencies": {
+        "eslint": "4.1.1",
+        "eslint-config-futagozaryuu": "3.2.0",
+        "rimraf": "2.6.1",
+        "babel-cli": "7.0.0-alpha.12",
+        "babel-preset-futagozaryuu": "2.2.0",
+        "rollup": "0.43.0",
+        "rollup-plugin-babel": "3.0.0-alpha.12",
+        "rollup-plugin-json": "2.3.0",
+        "benchr": "3.4.0",
+        "jest": "20.0.4"
+    },
+    "engines": {
+        "node": ">= 4"
+    },
+    "eslintConfig": {
+        "extends": "futagozaryuu/node-v4",
+        "root": true
+    }
+}
